@@ -1,0 +1,2 @@
+﻿WoWFunctions._unitThreatInfo() doesnt seem to be working, no crash though
+	so for now until it causes issues... We will leave it
