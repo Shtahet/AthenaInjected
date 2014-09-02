@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,10 +127,19 @@ namespace Athena.Core.Internal.Scripts
             throw new SleepException(ms);
         }
 
+        public virtual void RegisterEvents()
+        {
+        }
+
+        public virtual void DeregisterEvents()
+        {
+            
+        }
         public virtual void OnStart() { }
         public virtual void OnTick() { Stop(); }
         public virtual void OnTerminate() { }
 
+        
         public event EventHandler OnStartedEvent;
         private void OnStarted()
         {

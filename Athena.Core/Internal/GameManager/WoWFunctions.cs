@@ -74,7 +74,7 @@ namespace Athena.Core.Internal.GameManager
             #region WowObject Functions
             _getObjectFunctionLocation =
                 GeneralHelper.Memory.CreateFunction<GetObjectLocationDelegate>(
-                    Offsets.WowObjectOffsets.GetObjectLocation);
+                    Offsets.WowObjectOffsets.CGObject__GetObjectLocation);
             #endregion
 
             #region ObjectManager Functions
@@ -97,7 +97,7 @@ namespace Athena.Core.Internal.GameManager
 
             _GetObjectIsOutdoors =
                 GeneralHelper.Memory.CreateFunction<GetObjectIsOutdoorsDelegate>(
-                    Offsets.UncataloguedFunctions.WowObject__IsOutdoors);
+                    Offsets.UncataloguedFunctions.CGObject__IsOutdoors);
 
             _TrackingStop =
                 GeneralHelper.Memory.CreateFunction<TrackingStopDelegate>(

@@ -4,7 +4,6 @@ namespace Athena.Core.Patchables
 {
     internal static class Offsets
     {
-        
         internal static void Initialize()
         {
             //Ill let you make some beautiful function to do this automattically ;)
@@ -12,8 +11,6 @@ namespace Athena.Core.Patchables
 
             #region DrawingOffsets
             DrawingOffsets.CGWorldFrame__GetActiveCamera = GeneralHelper.RebaseAddress(DrawingOffsets.CGWorldFrame__GetActiveCamera);
-            //DrawingOffsets.WorldFrame = GeneralHelper.RebaseAddress(DrawingOffsets.WorldFrame);
-            //DrawingOffsets.aspect1 = GeneralHelper.RebaseAddress(DrawingOffsets.aspect1);
             DrawingOffsets.Possible_AspectRatio = GeneralHelper.RebaseAddress(DrawingOffsets.Possible_AspectRatio);
             #endregion
             
@@ -23,12 +20,12 @@ namespace Athena.Core.Patchables
             #endregion
 
             #region WowObject Functions
-            WowObjectOffsets.GetObjectLocation = GeneralHelper.RebaseAddress(WowObjectOffsets.GetObjectLocation);
+            WowObjectOffsets.CGObject__GetObjectLocation = GeneralHelper.RebaseAddress(WowObjectOffsets.CGObject__GetObjectLocation);
             #endregion
 
             #region UncataloguedFunctions
             UncataloguedFunctions.CGGameUI__Target = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGGameUI__Target);
-            UncataloguedFunctions.WowObject__IsOutdoors = GeneralHelper.RebaseAddress(UncataloguedFunctions.WowObject__IsOutdoors);
+            UncataloguedFunctions.CGObject__IsOutdoors = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGObject__IsOutdoors);
             UncataloguedFunctions.CGWorldFrame__Intersect = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGWorldFrame__Intersect);
             UncataloguedFunctions.CGUnit_C__TrackingStopInternal = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGUnit_C__TrackingStopInternal);
             UncataloguedFunctions.CGUnit_C__InitializeTrackingStateWrapper = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGUnit_C__InitializeTrackingStateWrapper);
@@ -48,9 +45,6 @@ namespace Athena.Core.Patchables
 
         internal static class DrawingOffsets
         {
-            //internal static uint WorldFrame = 0xE9FDBC; //6.0.2
-            //internal static uint ActiveCamera = 0x7610; //6.0.2
-
             //internal static uint aspect1 = 0xE31294; //5.4.8
             //internal static uint aspect2 = 0x24C;    //5.4.8
 
@@ -66,20 +60,26 @@ namespace Athena.Core.Patchables
 
         internal static class UncataloguedFunctions
         {
-            internal static uint CGGameUI__Target = 0x9D7AE3;//6.0.2
-            internal static uint WowObject__IsOutdoors = 0x33EB12;//6.0.2
-            internal static uint CGWorldFrame__Intersect = 0x5A1232;//6.0.2
-            internal static uint CGUnit_C__TrackingStopInternal = 0x3412A0;//6.0.2
-            internal static uint CGUnit_C__InitializeTrackingStateWrapper = 0x34EB4F;//6.0.2
             internal static uint Spell_C_GetSpellCooldown = 0x291289;//6.0.2
+
+            internal static uint CGGameUI__Target = 0x9D7AE3;//6.0.2
+            
+            internal static uint CGWorldFrame__Intersect = 0x5A1232;//6.0.2
+            
             internal static uint CGUnit_C__UnitReaction = 0x352E21;//6.0.2
             internal static uint CGUnit_C__CalculateThreat = 0x345AB4;//6.0.2
+            internal static uint CGUnit_C__TrackingStopInternal = 0x3412A0;//6.0.2
+            internal static uint CGUnit_C__InitializeTrackingStateWrapper = 0x34EB4F;//6.0.2
+
             internal static uint FrameScript_SignalEventHandler = 0x2DCAE;//6.0.2
+
+            internal static uint CGObject__GetObjectLocation = 0x2AF7E2; //6.0.2
+            internal static uint CGObject__IsOutdoors = 0x33EB12;//6.0.2
         }
 
         internal static class WowObjectOffsets
         {
-            internal static uint GetObjectLocation = 0x2AF7E2; //6.0.2
+            internal static uint CGObject__GetObjectLocation = 0x2AF7E2; //6.0.2
         }
 
         internal static class LuaFunctions
