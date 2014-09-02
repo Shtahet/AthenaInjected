@@ -35,6 +35,7 @@ namespace Athena.Core.Patchables
             UncataloguedFunctions.Spell_C_GetSpellCooldown = GeneralHelper.RebaseAddress(UncataloguedFunctions.Spell_C_GetSpellCooldown);
             UncataloguedFunctions.CGUnit_C__UnitReaction = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGUnit_C__UnitReaction);
             UncataloguedFunctions.CGUnit_C__CalculateThreat = GeneralHelper.RebaseAddress(UncataloguedFunctions.CGUnit_C__CalculateThreat);
+            UncataloguedFunctions.FrameScript_SignalEventHandler = GeneralHelper.RebaseAddress(UncataloguedFunctions.FrameScript_SignalEventHandler);
             #endregion
 
             #region Lua Functions
@@ -73,6 +74,7 @@ namespace Athena.Core.Patchables
             internal static uint Spell_C_GetSpellCooldown = 0x291289;//6.0.2
             internal static uint CGUnit_C__UnitReaction = 0x352E21;//6.0.2
             internal static uint CGUnit_C__CalculateThreat = 0x345AB4;//6.0.2
+            internal static uint FrameScript_SignalEventHandler = 0x2DCAE;//6.0.2
         }
 
         internal static class WowObjectOffsets

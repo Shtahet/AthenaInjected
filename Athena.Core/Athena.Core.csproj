@@ -85,6 +85,7 @@
     <Compile Include="Internal\GameManager\IngameObjects\WoWUnit.cs" />
     <Compile Include="Internal\GameManager\ObjectManager.cs" />
     <Compile Include="Internal\GameManager\WoWWorld.cs" />
+    <Compile Include="Internal\HardwareBrakepointHook.cs" />
     <Compile Include="Internal\Objects\Location.cs" />
     <Compile Include="Internal\Objects\WoWGuid.cs" />
     <Compile Include="Internal\Scripts\Script.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="Patchables\Descriptors.cs" />
     <Compile Include="Patchables\Enums\EquipSlot.cs" />
+    <Compile Include="Patchables\Enums\FrameXMLEvents.cs" />
     <Compile Include="Patchables\Enums\GameObjectFlags.cs" />
     <Compile Include="Patchables\Enums\ItemFlags.cs" />
     <Compile Include="Patchables\Enums\UnitFlags.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Scripts\UnitDumperScript.cs" />
     <Compile Include="Scripts\PlayerDumperScript.cs" />
     <Compile Include="Scripts\Tests\InteractionTestScript.cs" />
+    <Compile Include="Tests\WoWEventsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PluginApi\" />
