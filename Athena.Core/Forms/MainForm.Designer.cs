@@ -46,6 +46,9 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.LogBox = new System.Windows.Forms.RichTextBox();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -227,11 +230,44 @@
             this.LogBox.TabIndex = 14;
             this.LogBox.Text = "";
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(418, 242);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(98, 23);
+            this.button12.TabIndex = 8;
+            this.button12.Text = "Active Mover1";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(418, 271);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(98, 23);
+            this.button13.TabIndex = 15;
+            this.button13.Text = "ActiveMover2";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(522, 242);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(94, 23);
+            this.button14.TabIndex = 16;
+            this.button14.Text = "Tele";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(835, 299);
+            this.Controls.Add(this.button14);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.button12);
             this.Controls.Add(this.LogBox);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
@@ -272,6 +308,9 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         internal System.Windows.Forms.RichTextBox LogBox;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
 
     }
 }

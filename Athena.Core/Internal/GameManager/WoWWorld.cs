@@ -16,7 +16,7 @@ namespace Athena.Core.Internal.GameManager
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int TracelineDelegate(
-            ref Location start, ref Location end, out Location result, ref float distanceTravelled, uint flags);
+            ref Location start, ref Location end, out Location result, ref float distanceTravelled, uint flags, uint zero);
         private static TracelineDelegate _traceline;
 
         #endregion
@@ -28,7 +28,7 @@ namespace Athena.Core.Internal.GameManager
                 _traceline = GeneralHelper.Memory.CreateFunction<TracelineDelegate>(Offsets.UncataloguedFunctions.CGWorldFrame__Intersect);
 
             float dist = 1.0f;
-            return (TracelineResult)_traceline(ref start, ref end, out result, ref dist, flags);
+            return (TracelineResult)_traceline(ref start, ref end, out result, ref dist, flags, 0);
         }
 
         public static TracelineResult Traceline(Location start, Location end)
@@ -45,7 +45,7 @@ namespace Athena.Core.Internal.GameManager
             return Traceline(start, end, out result, 0x120171);
         }
 
-        public static void ClickToMove(Location desLocation, WoWGuid interactionGuid, WowClickToMoveType clickType, float presision)
+        public static void ClickToMove(Location desLocation, ulong interactionGuid, WowClickToMoveType clickType, float presision)
         {
             WoWFunctions._TrackingStart(ObjectManager.LocalPlayer.Pointer, (int) clickType, ref interactionGuid, ref desLocation,
                 presision);
@@ -53,12 +53,12 @@ namespace Athena.Core.Internal.GameManager
 
         public static void ClickToMove(Location desLocation)
         {
-            ClickToMove(desLocation, new WoWGuid(), WowClickToMoveType.Move, 2f);
+            ClickToMove(desLocation, 0, WowClickToMoveType.Move, 2f);
         }
 
         public static void ClickToMove(Location desLocation, WowClickToMoveType clickType)
         {
-            ClickToMove(desLocation, new WoWGuid(), clickType, 2f);
+            ClickToMove(desLocation, 0, clickType, 2f);
         }
 
         public enum TracelineResult

@@ -74,12 +74,12 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
 
         public void SetAsTarget()
         {
-            var allocatedMemory = (uint) Marshal.AllocHGlobal(0x10);
+            //var allocatedMemory = (uint) Marshal.AllocHGlobal(0x10);
 
-            GeneralHelper.WriteGUID(allocatedMemory, Guid);
-            WoWFunctions._setTarget(allocatedMemory);
-
-            Marshal.FreeHGlobal((IntPtr)allocatedMemory);
+            //GeneralHelper.WriteGUID(allocatedMemory, Guid);
+            //WoWFunctions._setTarget(allocatedMemory);
+            WoWFunctions._setTarget(Guid);
+            //Marshal.FreeHGlobal((IntPtr)allocatedMemory);
         }
 
         public bool IsOutdoors
@@ -130,16 +130,16 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
         }
 
 
-        public WoWGuid Guid
+        public ulong Guid
         {
             get
             {
                 ulong low = GeneralHelper.Memory.Read<ulong>(this.StorageField + (uint)Descriptors.WoWObjectFields.Guid);
-                ulong high = GeneralHelper.Memory.Read<ulong>(this.StorageField + (uint)Descriptors.WoWObjectFields.Guid + 0x8);
+                //ulong high = GeneralHelper.Memory.Read<ulong>(this.StorageField + (uint)Descriptors.WoWObjectFields.Guid + 0x8);
 
-                WoWGuid tempGuid = new WoWGuid(low, high);
-
-                return tempGuid;
+               //WoWGuidWoD tempGuid = new WoWGuidWoD(low, high);
+                return low;
+                //return tempGuid;
             }
         }
 

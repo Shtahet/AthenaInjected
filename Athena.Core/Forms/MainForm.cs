@@ -2,12 +2,14 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Athena.Core.Internal.Drawing;
-using Athena.Core.Internal.Drawing.Drawables;
+using Athena.Core.Internal.DirectX.Drawing;
+using Athena.Core.Internal.DirectX.Drawing.Drawables;
 using Athena.Core.Internal.GameManager;
 using Athena.Core.Internal.GameManager.IngameObjects;
 using Athena.Core.Internal.Objects;
 using Athena.Core.Internal.Scripts;
+using Athena.Core.Patchables;
+using Athena.Core.Tests;
 
 namespace Athena.Core.Forms
 {
@@ -163,5 +165,61 @@ namespace Athena.Core.Forms
         }
 
         #endregion
+
+        private ulong OldGUID = 0;
+        private void button12_Click(object sender, EventArgs e)
+        {
+            GeneralHelper.MainLog(ObjectManager.LocalPlayer.Pointer.ToString("X"), "wow");
+            OldGUID = ObjectManager.LocalPlayer.Guid;
+            /*WoWPacket moverPacket = new WoWPacket(0x002708E1);
+            moverPacket.Set<ulong>(0x10, 0);
+            moverPacket.Send();*/
+            WoWFunctions._SetActiveMover(0, true);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            WoWFunctions._SetActiveMover(OldGUID, true);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            WoWPacket telePacket = new WoWPacket(0x00270CA6);
+            uint ClientConnection = WoWFunctions._ClientConnection();
+            int tick = GeneralHelper.Memory.Read<int>(Offsets.Packet.OsTick);
+            uint oldFlags = GeneralHelper.Memory.Read<uint>(
+                GeneralHelper.Memory.Read<uint>(ObjectManager.LocalPlayer + 0xEC)
+                + 0x38);
+
+            GeneralHelper.Memory.Write<uint>(
+                GeneralHelper.Memory.Read<uint>(ObjectManager.LocalPlayer + 0xEC)
+                + 0x38, 1);
+
+            //telePacket.fillInMovementStatusWithFlags(moveTiming, 1);
+            telePacket.Set<int>(0xB0, 0); // Unknown
+            telePacket.Set<float>(0x24, ObjectManager.LocalPlayer.Location.X);
+            telePacket.Set<float>(0x28, ObjectManager.LocalPlayer.Location.Y);
+            telePacket.Set<float>(0x2C, ObjectManager.LocalPlayer.Location.Z);
+
+            //telePacket.Set<float>(0x54, tick);
+
+            telePacket.Set<bool>(0x78 + 0x10, true);           // send speed data
+            telePacket.Set<float>(0x74 + 0x10, 0);             // speed value or something
+            telePacket.Set<float>(0x68 + 0x10, -7.955547333f); // velocity
+            
+
+            /*telePacket.Set<bool>(0x78, true);           // send speed data
+            telePacket.Set<float>(0x74, 0);             // speed value or something
+            telePacket.Set<float>(0x68, -7.955547333f); // velocity*/
+
+
+            telePacket.Send();
+
+
+            GeneralHelper.Memory.Write<uint>(
+                GeneralHelper.Memory.Read<uint>(ObjectManager.LocalPlayer + 0xEC)
+                + 0x38, oldFlags);
+        }
+
     }
 }

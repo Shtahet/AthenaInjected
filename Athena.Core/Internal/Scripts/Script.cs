@@ -136,7 +136,8 @@ namespace Athena.Core.Internal.Scripts
             
         }
         public virtual void OnStart() { }
-        public virtual void OnTick() { Stop(); }
+        //public virtual void OnTick() { Stop(); }
+        public virtual void OnTick() {  }
         public virtual void OnTerminate() { }
 
         

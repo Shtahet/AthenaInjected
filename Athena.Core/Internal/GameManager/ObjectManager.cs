@@ -19,7 +19,7 @@ namespace Athena.Core.Internal.GameManager
         private static readonly EnumVisibleObjectsCallback _callback = Callback;
         #endregion]
 
-        private static readonly Dictionary<WoWGuid, WoWObject> _objects = new Dictionary<WoWGuid, WoWObject>();
+        private static readonly Dictionary<ulong, WoWObject> _objects = new Dictionary<ulong, WoWObject>();
 
         public static WoWLocalPlayer LocalPlayer { get; private set; }
         public static List<WoWObject> Objects { get; private set; }
@@ -29,7 +29,7 @@ namespace Athena.Core.Internal.GameManager
             _ourCallback = Marshal.GetFunctionPointerForDelegate(_callback);
         }
 
-        public static WoWObject GetObjectByGuid(WoWGuid guid)
+        public static WoWObject GetObjectByGuid(ulong guid)
         {
             if (_objects.ContainsKey(guid))
                 return _objects[guid];
@@ -72,8 +72,8 @@ namespace Athena.Core.Internal.GameManager
 
             var obj = new WoWObject(ObjectPointer);
 
-            WoWGuid guid = obj.Guid;
-
+            //WoWGuidWoD guid = obj.Guid;
+            ulong guid = obj.Guid;
             if (_objects.ContainsKey(guid))
                 _objects[guid].Pointer = ObjectPointer;
             else

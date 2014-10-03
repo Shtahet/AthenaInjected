@@ -20,7 +20,7 @@ namespace Athena.Core.Internal
         {
             uint returnVal = WoWFunctions._GetLocalizedText(ObjectManager.LocalPlayer.Pointer, returnValue, -1);
 
-            return GeneralHelper.Memory.ReadString(returnVal, new UTF8Encoding());
+            return GeneralHelper.Memory.ReadString(returnVal, new ASCIIEncoding(), 5120);
         }
 
         public static string[] GetReturnValues(string command, string Argument)

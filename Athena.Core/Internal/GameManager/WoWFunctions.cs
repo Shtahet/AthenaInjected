@@ -26,7 +26,7 @@ namespace Athena.Core.Internal.GameManager
 
         #region UncataloguedFunctions
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate int SetUITargetDelegate(uint guidPointer);
+        public delegate int SetUITargetDelegate(ulong guidPointer);
         public static SetUITargetDelegate _setTarget;
 
         [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
@@ -39,7 +39,7 @@ namespace Athena.Core.Internal.GameManager
 
         [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
         public delegate char TrackingStartDelegate(
-           uint pointer, int clickType, ref WoWGuid interactGuid, ref Location clickLocation, float precision);
+           uint pointer, int clickType, ref ulong interactGuid, ref Location clickLocation, float precision);
         public static TrackingStartDelegate _TrackingStart;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -56,6 +56,18 @@ namespace Athena.Core.Internal.GameManager
             uint player, uint target, ref uint threatStatus, ref uint rawPct, ref uint scaledPct,
             ref uint threatValue);
         public static UnitThreatInfoDelegate _unitThreatInfo;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate int SetActiveMover(ulong guid, bool _true);
+        public static SetActiveMover _SetActiveMover;
+
+        [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+        public delegate bool Packet_SendJamDelegate(uint _this, uint a2, int always2);
+        public static Packet_SendJamDelegate Packet_SendJam;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate uint ClientConnectionDelegate();
+        public static ClientConnectionDelegate _ClientConnection;
 
         #endregion
 
@@ -74,7 +86,7 @@ namespace Athena.Core.Internal.GameManager
             #region WowObject Functions
             _getObjectFunctionLocation =
                 GeneralHelper.Memory.CreateFunction<GetObjectLocationDelegate>(
-                    Offsets.WowObjectOffsets.CGObject__GetObjectLocation);
+                    Offsets.UncataloguedFunctions.CGObject__GetObjectLocation);
             #endregion
 
             #region ObjectManager Functions
@@ -119,6 +131,15 @@ namespace Athena.Core.Internal.GameManager
                 GeneralHelper.Memory.CreateFunction<UnitThreatInfoDelegate>(
                     Offsets.UncataloguedFunctions.CGUnit_C__CalculateThreat);
 
+            _SetActiveMover =
+                GeneralHelper.Memory.CreateFunction<SetActiveMover>(
+                    Offsets.UncataloguedFunctions.CGUnit_C__SetActiveMover);
+
+            Packet_SendJam =
+  GeneralHelper.Memory.CreateFunction<Packet_SendJamDelegate>(Offsets.Packet.SendJam);
+
+            _ClientConnection =
+  GeneralHelper.Memory.CreateFunction<ClientConnectionDelegate>(Offsets.Packet.ClientConection);
             #endregion
 
             #region Lua Functions

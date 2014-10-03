@@ -27,25 +27,27 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
             }
         }
 
-        public WoWGuid OwnerGuid
+        public ulong OwnerGuid
         {
             get
             {
                 ulong low = GetDescriptor<ulong>((int)Descriptors.WoWItemFields.Owner);
-                ulong high = GetDescriptor<ulong>((int)Descriptors.WoWItemFields.Owner + 0x8);
+                //ulong high = GetDescriptor<ulong>((int)Descriptors.WoWItemFields.Owner + 0x8);
 
-                return new WoWGuid(low, high);
+               // return new WoWGuidWoD(low, high);
+                return low;
             }
         }
 
-        public WoWGuid CreatorGuid
+        public ulong CreatorGuid
         {
             get
             {
                 ulong low = GetDescriptor<ulong>((int)Descriptors.WoWItemFields.Creator);
-                ulong high = GetDescriptor<ulong>((int)Descriptors.WoWItemFields.Creator + 0x8);
+                //ulong high = GetDescriptor<ulong>((int)Descriptors.WoWItemFields.Creator + 0x8);
 
-                return new WoWGuid(low, high);
+                //return new WoWGuidWoD(low, high);
+                return low;
             }
         }
 

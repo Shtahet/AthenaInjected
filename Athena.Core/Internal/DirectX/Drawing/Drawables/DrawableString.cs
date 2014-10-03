@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Athena.Core.Internal.Drawing.Drawables
+namespace Athena.Core.Internal.DirectX.Drawing.Drawables
 {
     class DrawableString : IResource
     {

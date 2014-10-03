@@ -1,9 +1,8 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using Athena.Core.Patchables;
 using SlimDX;
 
-namespace Athena.Core.Internal.Drawing
+namespace Athena.Core.Internal.DirectX.Drawing
 {
     public static unsafe class Camera
     {
@@ -103,10 +102,10 @@ namespace Athena.Core.Internal.Drawing
         {
             get
             {
-                //float aspect = GeneralHelper.Memory.Read<float>(GeneralHelper.Memory.Read<uint>(Offsets.DrawingOffsets.aspect1) +
-                  //                               Offsets.DrawingOffsets.aspect2);
+                float aspect = GeneralHelper.Memory.Read<float>(GeneralHelper.Memory.Read<uint>(Offsets.DrawingOffsets.aspect1) +
+                                                 Offsets.DrawingOffsets.aspect2);
                 //float aspect = 1.77863777f;
-                float aspect = GeneralHelper.Memory.Read<float>(Offsets.DrawingOffsets.Possible_AspectRatio);
+                //float aspect = GeneralHelper.Memory.Read<float>(Offsets.DrawingOffsets.Possible_AspectRatio);
 
                 return aspect;
             }

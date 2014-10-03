@@ -15,11 +15,12 @@ namespace Athena.Core.Internal.GameManager.IngameObjects.Extensions
 
         }
 
-        public uint IsBitten
+        public bool IsBitten
         {
             get
             {
-                return (int)GeneralHelper.Memory.Read<byte>(Pointer + Offsets.GameObjectFields.Animation) != 0;
+                return false;
+                //return (int)GeneralHelper.Memory.Read<byte>(Pointer + Offsets.GameObjectFields.Animation) != 0;
             }
         }
     }

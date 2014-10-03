@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Athena.Core.Internal.DirectX.Drawing;
 using Athena.Core.Internal.DirectX.Required;
-using Athena.Core.Internal.Drawing;
 using Athena.Core.Internal.GameManager;
 
 namespace Athena.Core.Internal.DirectX

@@ -20,15 +20,16 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
             }
         }
 
-        public WoWGuid GetItemGuid(int index)
+        public ulong GetItemGuid(int index)
         {
             if (index > 35 || index >= Slots || index <= 0)
-                return new WoWGuid();
+                return 0;
 
             ulong low = GetDescriptor<ulong>((int)Descriptors.WoWContainerFields.Slots + (index * 8));
-            ulong high = GetDescriptor<ulong>((int)Descriptors.WoWContainerFields.Slots + (index * 8) + 0x8);
+            //ulong high = GetDescriptor<ulong>((int)Descriptors.WoWContainerFields.Slots + (index * 8) + 0x8);
 
-            return new WoWGuid(low, high);
+            //return new WoWGuidWoD(low, high);
+            return low;
         }
 
         public WoWItem GetItem(int index)
@@ -43,8 +44,9 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
                 var ret = new List<WoWItem>((int)Slots);
                 for (int i = 0; i < Slots; i++)
                 {
-                    WoWGuid guid = GetItemGuid(i);
-                    if (guid.IsValid)
+                    //WoWGuidWoD guid = GetItemGuid(i);
+                    ulong guid = GetItemGuid(i);
+                    if (guid != 0)
                     {
                         var obj = ObjectManager.GetObjectByGuid(guid);
                         if (obj == null || !obj.IsValid || !obj.IsItem)

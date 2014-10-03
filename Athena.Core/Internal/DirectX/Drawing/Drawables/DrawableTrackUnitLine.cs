@@ -3,7 +3,7 @@ using System.Linq;
 using Athena.Core.Internal.GameManager;
 using Athena.Core.Internal.GameManager.IngameObjects;
 
-namespace Athena.Core.Internal.Drawing.Drawables
+namespace Athena.Core.Internal.DirectX.Drawing.Drawables
 {
     public class DrawableTrackUnitLine : DrawableTrackObjectLine
     {

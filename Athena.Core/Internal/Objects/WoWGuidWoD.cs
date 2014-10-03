@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Athena.Core.Internal.Objects
 {
-    public class WoWGuid
+    public class WoWGuidWoD
     {
-        public WoWGuid(ulong low, ulong high)
+        public WoWGuidWoD(ulong low, ulong high)
         {
             Low = low;
             High = high;
         }
 
-        public WoWGuid()
+        public WoWGuidWoD()
         {
             Low = 0;
             High = 0;
@@ -81,14 +81,14 @@ namespace Athena.Core.Internal.Objects
 
         public override bool Equals(object obj)
         {
-            WoWGuid o;
+            WoWGuidWoD o;
             try
             {
-                o = (WoWGuid)obj;
+                o = (WoWGuidWoD)obj;
             }
             catch (Exception)
             {
-                o = new WoWGuid();
+                o = new WoWGuidWoD();
             }
 
             if (this.Low != o.Low)

@@ -31,13 +31,13 @@ namespace Athena.QuickInjector
 
         static void bgwInjector_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (!Process.GetProcessesByName("wowb").Any())
+            if (!Process.GetProcessesByName("wow").Any())
             {
                 Console.WriteLine("QuickInjector could not find any wow processes");
                 return;
             }
 
-            var injector = new DotNetInjector(Process.GetProcessesByName("wowb").First());
+            var injector = new DotNetInjector(Process.GetProcessesByName("wow").First());
             injector.InjectAndForget(InjectedDomainManagerEntryPoint, Application.StartupPath + "\\Athena.Core.dll");
 
             bgwInjector.ReportProgress(50, "Injecting...");

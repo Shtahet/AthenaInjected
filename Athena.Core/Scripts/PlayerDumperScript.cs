@@ -23,7 +23,7 @@ namespace Athena.Core.Scripts
             foreach (var p in ObjectManager.Objects.Where(x => x.IsPlayer).Cast<WoWPlayer>())
             {
                 Print("-- {0}", p.Name);
-                Print("\tGUID: 0x{0}", p.Guid.Low.ToString("X"));
+                Print("\tGUID: 0x{0}", p.Guid.ToString("X"));
                 Print("\tLevel {0} {1} {2}", p.Level, p.Race, p.Class);
                 Print("\tHealth: {0}/{1} ({2}%)", p.Health, p.MaxHealth, (int)p.HealthPercentage);
                 //Print("\t{0}: {1}/{2} ({3}%)", p.PowerType, p.Power, p.MaxPower, (int)p.PowerPercentage);

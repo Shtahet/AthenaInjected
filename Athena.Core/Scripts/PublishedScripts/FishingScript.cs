@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Athena.Core.Internal;
 using Athena.Core.Internal.GameManager;
 using Athena.Core.Internal.GameManager.IngameObjects;
+using Athena.Core.Internal.Objects;
 using Athena.Core.Internal.Scripts;
 using GreyMagic.Internals;
 
@@ -36,6 +37,13 @@ namespace Athena.Core.Scripts.PublishedScripts
                 return;
             }
 
+            //FishingSpell = GeneralHelper.SpellManager.KnownSpells;
+            if (FishingSpell == null || !FishingSpell.IsValid)
+            {
+                Print("You don't know fishing!");
+                Stop();
+            }
+
             RegisterEvents();
         }
 
@@ -62,7 +70,7 @@ namespace Athena.Core.Scripts.PublishedScripts
                     break;
                 case FishingState.Cast:
                     Print("Casting Fishing Pole");
-                    FishingSpell.Cast();
+                    //FishingSpell.Cast();
                     CurrentState = FishingState.Fishing;
                     break;
                 case FishingState.Fishing:
@@ -112,12 +120,14 @@ namespace Athena.Core.Scripts.PublishedScripts
 
         private bool IsBobbing
         {
-            get { return (Bobber.IsValid ? Manager.Memory.Read<byte>(new IntPtr(Bobber.Pointer.ToInt64() + Pointers.Other.IsBobbing)) == 1 : false); }
+            //get { return (Bobber.IsValid ? Manager.Memory.Read<byte>(new IntPtr(Bobber.Pointer.ToInt64() + Pointers.Other.IsBobbing)) == 1 : false); }
+            get { return false; }
         }
 
         private bool IsFishing
         {
-            get { return ObjectManager.LocalPlayer.ChanneledCastingId == Fishing.Id; }
+            //get { return ObjectManager.LocalPlayer.ChanneledCastingId == Fishing.Id; }
+            get { return false; }
         }
 
         private bool HasBait

@@ -19,13 +19,15 @@ namespace Athena.Core
         public static InProcessMemoryReader Memory { get; private set; }
         public static ObjectManager ObjectManager { get; private set; }
         public static ScriptManager Scripts { get; private set; }
+        public static SpellManager SpellManager { get; private set; }
         public static void Initialize()
         {
             Memory = new InProcessMemoryReader(GetCurrentProcess);
 
             Pulsator.RegisterCallbacks(
                ObjectManager = new ObjectManager(),
-               Scripts = new ScriptManager()
+               Scripts = new ScriptManager(),
+               SpellManager = new SpellManager()
                );
         }
 
@@ -40,7 +42,7 @@ namespace Athena.Core
             return (uint) (GetCurrentProcess.MainModule.BaseAddress + (int) addr);
         }
 
-        public static void WriteGUID(uint allocatedMemory, WoWGuid guid)
+        public static void WriteGUID(uint allocatedMemory, WoWGuidWoD guid)
         {
             Memory.Write<ulong>(allocatedMemory, guid.Low);
             Memory.Write<ulong>(allocatedMemory + 0x8, guid.High);

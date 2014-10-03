@@ -1,13 +1,14 @@
 ﻿using Athena.Core.Internal.GameManager;
+using Athena.Core.Internal.GameManager.DBC;
 using Athena.Core.Internal.GameManager.IngameObjects;
 using Athena.Core.Internal.Scripts;
 
 namespace Athena.Core.Scripts.Tests
 {
-    public class HaveAggroTestScript : Script
+    public class DBCLoadTestScript : Script
     {
-        public HaveAggroTestScript()
-            : base("HaveAggro -> Target", "Tests")
+        public DBCLoadTestScript()
+            : base("DBC -> Load", "Tests")
         { }
 
         public override void OnStart()
@@ -15,11 +16,8 @@ namespace Athena.Core.Scripts.Tests
             if (!ObjectManager.IsInGame)
                 return;
 
-            WoWUnit tar = (WoWUnit) ObjectManager.LocalPlayer.Target;
-
-
-            Print("-- Have Aggro: {0}", tar.HaveAggroWithPlayer);
-            Print("-- Have Threat: {0}", tar.HaveThreatWithPlayer);
+            DBCManager dbc = new DBCManager();
+            dbc.Initialize();
             Stop();
         }
     }

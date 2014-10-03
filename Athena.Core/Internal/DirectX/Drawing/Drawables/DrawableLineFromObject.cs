@@ -2,7 +2,7 @@
 using Athena.Core.Internal.GameManager.IngameObjects;
 using Athena.Core.Internal.Objects;
 
-namespace Athena.Core.Internal.Drawing.Drawables
+namespace Athena.Core.Internal.DirectX.Drawing.Drawables
 {
     internal class DrawableLineFromObject : IResource
     {

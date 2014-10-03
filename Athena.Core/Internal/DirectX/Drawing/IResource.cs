@@ -1,4 +1,4 @@
-﻿namespace Athena.Core.Internal.Drawing
+﻿namespace Athena.Core.Internal.DirectX.Drawing
 {
     public interface IResource
     {

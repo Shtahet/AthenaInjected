@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Athena.Core.Internal.Drawing
+namespace Athena.Core.Internal.DirectX.Drawing
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct Matrix3

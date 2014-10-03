@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Athena.Core.Internal.Objects;
 
-namespace Athena.Core.Internal.Drawing.Drawables
+namespace Athena.Core.Internal.DirectX.Drawing.Drawables
 {
     public class DrawableCircle : IResource
     {

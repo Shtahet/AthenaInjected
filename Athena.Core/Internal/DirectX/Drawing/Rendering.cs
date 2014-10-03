@@ -6,7 +6,7 @@ using Athena.Core.Internal.Objects;
 using SlimDX;
 using SlimDX.Direct3D9;
 
-namespace Athena.Core.Internal.Drawing
+namespace Athena.Core.Internal.DirectX.Drawing
 {
     public static class Rendering
     {

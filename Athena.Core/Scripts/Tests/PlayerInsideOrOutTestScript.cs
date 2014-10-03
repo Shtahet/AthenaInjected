@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Athena.Core.Internal.GameManager;
-using Athena.Core.Internal.GameManager.IngameObjects;
+﻿using Athena.Core.Internal.GameManager;
 using Athena.Core.Internal.Scripts;
 
-namespace Athena.Core.Scripts
+namespace Athena.Core.Scripts.Tests
 {
     public class PlayerInsideOrOutTestScript : Script
     {

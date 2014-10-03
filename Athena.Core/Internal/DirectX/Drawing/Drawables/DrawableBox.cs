@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Athena.Core.Internal.GameManager.IngameObjects;
 
-namespace Athena.Core.Internal.Drawing.Drawables
+namespace Athena.Core.Internal.DirectX.Drawing.Drawables
 {
     class DrawableBox : IResource
     {

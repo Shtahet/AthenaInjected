@@ -33,6 +33,7 @@ namespace Athena.Core.Tests
                                                                       new WoWEventInternalDelegate(Callback), "WoWEvents");
 
             Register(FrameXMLEvents.PLAYER_LEVEL_UP, HandlePlayerLevelUp);
+            Register(FrameXMLEvents.AMPLIFY_UPDATE, HandleARCHAEOLOGY);
         }
 
         #region
@@ -40,6 +41,12 @@ namespace Athena.Core.Tests
         {
             GeneralHelper.MainLog(string.Join(",", args.ToArray()), "PLAYER_LEVEL_UP");
         }
+
+        private static void HandleARCHAEOLOGY(FrameXMLEvents ev, List<string> args)
+        {
+            GeneralHelper.MainLog(string.Join(",", args.ToArray()), "ARCHAEOLOGY_CLOSED");
+        }
+
         #endregion
 
         #region private functions

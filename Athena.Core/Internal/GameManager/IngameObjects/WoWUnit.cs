@@ -13,13 +13,14 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
         {
         }
 
-        public WoWGuid TargetGuid
+        public ulong TargetGuid
         {
             get
             {
                 ulong low = GetDescriptor<ulong>((int) Descriptors.WoWUnitFields.Target);
-                ulong high = GetDescriptor<ulong>((int) (Descriptors.WoWUnitFields.Target + 0x8));
-                return new WoWGuid(low, high);
+                //ulong high = GetDescriptor<ulong>((int) (Descriptors.WoWUnitFields.Target + 0x8));
+                //return new WoWGuidWoD(low, high);
+                return low;
             }
         }
 
@@ -324,23 +325,25 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
             }
         }
 
-        public WoWGuid SummonedBy
+        public ulong SummonedBy
         {
             get
             {
                 ulong low = GetDescriptor<ulong>((int)Descriptors.WoWUnitFields.SummonedBy);
-                ulong high = GetDescriptor<ulong>((int)Descriptors.WoWUnitFields.SummonedBy + 0x8);
-                return new WoWGuid(low, high);
+                //ulong high = GetDescriptor<ulong>((int)Descriptors.WoWUnitFields.SummonedBy + 0x8);
+                //return new WoWGuidWoD(low, high);
+                return low;
             }
         }
 
-        public WoWGuid CreatedBy
+        public ulong CreatedBy
         {
             get
             {
                 ulong low = GetDescriptor<ulong>((int)Descriptors.WoWUnitFields.CreatedBy);
-                ulong high = GetDescriptor<ulong>((int)Descriptors.WoWUnitFields.CreatedBy + 0x8);
-                return new WoWGuid(low, high);
+                //ulong high = GetDescriptor<ulong>((int)Descriptors.WoWUnitFields.CreatedBy + 0x8);
+                //return new WoWGuidWoD(low, high);
+                return low;
             }
         }
 

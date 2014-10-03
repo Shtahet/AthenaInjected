@@ -68,14 +68,15 @@ namespace Athena.Core.Internal.GameManager.IngameObjects
             }
         }
 
-        public WoWGuid CreatedBy
+        public ulong CreatedBy
         {
             get
             {
                 ulong low = GetDescriptor<ulong>((int)Descriptors.WoWGameObjectFields.CreatedBy);
-                ulong high = GetDescriptor<ulong>((int)Descriptors.WoWGameObjectFields.CreatedBy + 0x8);
+                //ulong high = GetDescriptor<ulong>((int)Descriptors.WoWGameObjectFields.CreatedBy + 0x8);
 
-                return new WoWGuid(low, high);
+                //return new WoWGuidWoD(low, high);
+                return low;
             }
         }
 

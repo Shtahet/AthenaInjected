@@ -5,7 +5,7 @@ using Athena.Core.Internal.GameManager;
 using Athena.Core.Internal.GameManager.IngameObjects;
 using Athena.Core.Internal.Objects;
 
-namespace Athena.Core.Internal.Drawing.Drawables
+namespace Athena.Core.Internal.DirectX.Drawing.Drawables
 {
     public class DrawableTrackObjectLine : IResource
     {
