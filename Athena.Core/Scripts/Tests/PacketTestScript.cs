@@ -27,8 +27,8 @@ namespace Athena.Core.Scripts.Tests
             packetwhitelist.Add((uint)PacketsEnum.MoveStart);
             packetwhitelist.Add((uint)PacketsEnum.MoveStop);
             packetwhitelist.Add((uint)PacketsEnum.MoveJumpHitHead);*/
-            packetwhitelist.Add((uint)PacketsEnum.SetActiveMover);
-            packetwhitelist.Add((uint)PacketsEnum.PostSetActiveMover);
+            //packetwhitelist.Add((uint)PacketsEnum.SetActiveMover);
+            //packetwhitelist.Add((uint)PacketsEnum.PostSetActiveMover);
 
             Packet_PutFloat =
                GeneralHelper.Memory.CreateFunction<Packet_PutFloatDelegate>(Offsets.Packet.PutFloat);
@@ -46,8 +46,11 @@ namespace Athena.Core.Scripts.Tests
               GeneralHelper.Memory.CreateFunction<Packet_PutArrayDelegate>(Offsets.Packet.PutArray);
             Packet_PutData =
               GeneralHelper.Memory.CreateFunction<Packet_PutDataDelegate>(Offsets.Packet.PutData);
+            Packet_FallLand =
+                GeneralHelper.Memory.CreateFunction<Packet_FallLandDelegate>(GeneralHelper.RebaseAddress(0x4121FA));
 
-
+            Packet_FallLand_Detour = GeneralHelper.Memory.Detours.CreateAndApply(Packet_PutFloat,
+                                                                    new Packet_FallLandDelegate(Packet_FallLandCallback), "FallLand");
             Packet_PutFloat_Detour = GeneralHelper.Memory.Detours.CreateAndApply(Packet_PutFloat,
                                                                      new Packet_PutFloatDelegate(Packet_PutFloatCallback), "PutFloat");
             Packet_PutInt16_Detour = GeneralHelper.Memory.Detours.CreateAndApply(Packet_PutInt16,
@@ -71,6 +74,14 @@ namespace Athena.Core.Scripts.Tests
 
         }
 
+        private int Packet_FallLandCallback(uint _this, uint a2, uint a3, uint a4)
+        {
+            ulong OldGUID = ObjectManager.LocalPlayer.Guid;
+           // WoWFunctions._SetActiveMover(0, true);
+           // WoWFunctions._SetActiveMover(OldGUID, true);
+            return (int)Packet_FallLand_Detour.CallOriginal(_this, a2, a3, a4);
+        }
+
         private int Packet_PutFloatCallback(uint _this, float a2)
         {
             if (!isBlacklisted)
@@ -89,7 +100,7 @@ namespace Athena.Core.Scripts.Tests
         {
             if (isFreshPacket)
             {
-                isBlacklisted = !packetwhitelist.Contains((uint)a2);
+                isBlacklisted = false;//!packetwhitelist.Contains((uint)a2);
                 if (!isBlacklisted)
                 {
                     PacketsEnum packetName = (PacketsEnum) a2;
@@ -183,6 +194,11 @@ namespace Athena.Core.Scripts.Tests
             string hex = BitConverter.ToString(ba);
             return hex.Replace("-", "");
         }
+
+        [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+        public delegate int Packet_FallLandDelegate(uint _this, uint a2, uint a3, uint a4);
+        public static Packet_FallLandDelegate Packet_FallLand;
+        private static Detour Packet_FallLand_Detour;
 
         #region Crap
         //int __thiscall Packet_PutFloat(int this, int a2)

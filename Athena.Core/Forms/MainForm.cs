@@ -172,8 +172,10 @@ namespace Athena.Core.Forms
             GeneralHelper.MainLog(ObjectManager.LocalPlayer.Pointer.ToString("X"), "wow");
             OldGUID = ObjectManager.LocalPlayer.Guid;
             /*WoWPacket moverPacket = new WoWPacket(0x002708E1);
-            moverPacket.Set<ulong>(0x10, 0);
-            moverPacket.Send();*/
+            moverPacket.Set<ulong>(0x10, 0x0);
+            moverPacket.Send();
+            ulong RandomPlayer = ObjectManager.LocalPlayer.TargetGuid;*/
+
             WoWFunctions._SetActiveMover(0, true);
         }
 
@@ -185,7 +187,7 @@ namespace Athena.Core.Forms
         private void button14_Click(object sender, EventArgs e)
         {
             WoWPacket telePacket = new WoWPacket(0x00270CA6);
-            uint ClientConnection = WoWFunctions._ClientConnection();
+            //uint ClientConnection = WoWFunctions._ClientConnection();
             int tick = GeneralHelper.Memory.Read<int>(Offsets.Packet.OsTick);
             uint oldFlags = GeneralHelper.Memory.Read<uint>(
                 GeneralHelper.Memory.Read<uint>(ObjectManager.LocalPlayer + 0xEC)
@@ -193,7 +195,7 @@ namespace Athena.Core.Forms
 
             GeneralHelper.Memory.Write<uint>(
                 GeneralHelper.Memory.Read<uint>(ObjectManager.LocalPlayer + 0xEC)
-                + 0x38, 1);
+                + 0x38, 0x1);
 
             //telePacket.fillInMovementStatusWithFlags(moveTiming, 1);
             telePacket.Set<int>(0xB0, 0); // Unknown
